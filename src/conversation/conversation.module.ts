@@ -9,7 +9,7 @@ import {ConversationController} from './conversation.controller'
 import  {ChatGateway} from '../chat/chat.gateway'
 
 @Module({
-    imports: [MongooseModule.forFeature([{ name: 'Conversation', schema: ConversationSchema}]),UsersModule,forwardRef(() => MessageModule),ChatGateway ],
+    imports: [MongooseModule.forFeature([{ name: 'Conversation', schema: ConversationSchema}]),UsersModule,forwardRef(() => MessageModule),forwardRef(() => ChatGateway) ],
     controllers:[ConversationController],
     providers:[ConversationService ,UploadFileService,ChatGateway],
     exports:[ConversationService],
