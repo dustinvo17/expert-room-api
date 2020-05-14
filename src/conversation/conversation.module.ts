@@ -6,14 +6,14 @@ import {MessageModule} from '../message/message.module'
 import {UploadFileService} from './aws.service'
 import {ConversationService} from './conversation.service'
 import {ConversationController} from './conversation.controller'
-import {ChatModule} from '../chat/chat.module'
+
 import  {ChatGateway} from '../chat/chat.gateway'
 
 
 @Module({
-    imports: [MongooseModule.forFeature([{ name: 'Conversation', schema: ConversationSchema}]),forwardRef(() => UsersModule),forwardRef(() => MessageModule) ],
+    imports: [MongooseModule.forFeature([{ name: 'Conversation', schema: ConversationSchema}]), UsersModule,forwardRef(() => MessageModule) ],
     controllers:[ConversationController],
-    providers:[ConversationService ,UploadFileService,ChatGateway],
+    providers:[ConversationService ,UploadFileService],
     exports:[ConversationService],
    
   })
