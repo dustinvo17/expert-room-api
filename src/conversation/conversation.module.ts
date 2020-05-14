@@ -11,7 +11,7 @@ import  {ChatGateway} from '../chat/chat.gateway'
 
 
 @Module({
-    imports: [MongooseModule.forFeature([{ name: 'Conversation', schema: ConversationSchema}]), UsersModule,forwardRef(() => MessageModule) ],
+    imports: [MongooseModule.forFeature([{ name: 'Conversation', schema: ConversationSchema}]), UsersModule,forwardRef(() => MessageModule),ChatGateway ],
     controllers:[ConversationController],
     providers:[ConversationService ,UploadFileService],
     exports:[ConversationService],
