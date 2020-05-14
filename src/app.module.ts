@@ -7,8 +7,9 @@ import { ChatModule } from './chat/chat.module';
 import { AuthModule } from './auth/auth.module';
 import { ConversationModule} from './conversation/conversation.module'
 import { UsersModule } from './users/users.module';
+import {SocketModule} from './socket/socket.module'
 @Module({
-  imports: [MongooseModule.forRoot(`mongodb+srv://${process.env.MONGO_CONFIG}@cluster0-2i7tz.mongodb.net/chat-app?retryWrites=true&w=majority`),MessageModule, ChatModule, AuthModule, UsersModule,ConversationModule],
+  imports: [MongooseModule.forRoot(`mongodb+srv://${process.env.MONGO_CONFIG}@cluster0-2i7tz.mongodb.net/chat-app?retryWrites=true&w=majority`),SocketModule,MessageModule, ChatModule, AuthModule, UsersModule,ConversationModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -4,15 +4,17 @@ import { JwtService } from '@nestjs/jwt';
 import {MessageService} from '../message/message.service'
 import {ChatDataModel} from './chatdata.model'
 import {Injectable} from '@nestjs/common'
-
+import { SocketService } from '../socket/socket.service';
 @Injectable()
 @WebSocketGateway()
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
-    constructor(private readonly jwtServ: JwtService,private readonly msgService: MessageService){}
+    constructor(private readonly jwtServ: JwtService,private readonly msgService: MessageService,private socketService: SocketService){}
     
     @WebSocketServer() public server: Server
     users = 0;
-   
+    afterInit(server: Server) {
+        this.socketService.server = server;
+      }
     async handleConnection(client: Socket){
     
         

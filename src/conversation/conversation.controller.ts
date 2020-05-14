@@ -5,10 +5,10 @@ import {UploadFileService} from './aws.service'
 import {MessageService} from '../message/message.service'
 import {UseInterceptors, UploadedFile} from '@nestjs/common'
 import {FileInterceptor} from '@nestjs/platform-express'
-import {ChatGateway} from '../chat/chat.gateway'
+import {SocketService} from '../socket/socket.service'
 @Controller('/chat')
 export class ConversationController {
-    constructor(private conversationService: ConversationService , private uploadFileService: UploadFileService, private msgService: MessageService,private chatGateway: ChatGateway) {}
+    constructor(private conversationService: ConversationService , private uploadFileService: UploadFileService, private msgService: MessageService,private socketService: SocketService) {}
     @UseGuards(AuthGuard('jwt'))
     @Post()
     async initConversation(@Request() req) {
@@ -32,7 +32,7 @@ export class ConversationController {
         const conversationId = req.query.conversationId
         const filePath = await this.uploadFileService.uploadFile(file,userId)
         const newMsg = await this.msgService.create(filePath,userId,conversationId,true)
-        return this.chatGateway.server.emit('chat',newMsg)
+        return this.socketService.server.emit('chat',newMsg)
         
         // console.log(file)
         // console.log(await this.uploadFileService.uploadFile(file))
