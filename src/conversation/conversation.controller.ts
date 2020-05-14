@@ -32,7 +32,9 @@ export class ConversationController {
         const conversationId = req.query.conversationId
         const filePath = await this.uploadFileService.uploadFile(file,userId)
         const newMsg = await this.msgService.create(filePath,userId,conversationId,true)
-        return this.socketService.server.emit('chat',newMsg)
+        const conversations = await this.conversationService.findConversationsByUser(req.user.userId)
+        this.socketService.server.emit('chat',newMsg)
+        this.socketService.server.emit('conversation', conversations)
         
         // console.log(file)
         // console.log(await this.uploadFileService.uploadFile(file))
