@@ -12,8 +12,6 @@
   "scripts": {
     "prestart:prod": "rimraf dist && npm run build",
     "postinstall": "npm run prestart:prod",
-    "prebuild": "rm -rf dist && tsc -p tsconfig.build.json",
-    "gcp-build":"npm run build",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "npm run start:prod",
