@@ -106,14 +106,17 @@ export class UsersService {
         if(pullBack === true ){
             docA = await this.friendModel.findOne({ recipient: adder._id, requester: reciever._id })
              docB = await this.friendModel.findOne({ recipient: reciever._id, requester: adder._id })
+             await adder.update({ $pull: { friends: docB._id } })
+             await reciever.update({ $pull: { friends: docA._id } })
         }
         else {
             docA = await this.friendModel.findOne({ recipient: reciever._id, requester: adder._id })
             docB = await this.friendModel.findOne({ recipient: adder._id, requester: reciever._id })
+            await adder.update({ $pull: { friends: docA._id } })
+            await reciever.update({ $pull: { friends: docB._id } })
         }
          
-        await adder.update({ $pull: { friends: docA._id } })
-        await reciever.update({ $pull: { friends: docB._id } })
+      
         await this.friendModel.findOneAndDelete({ _id: docA._id })
         await this.friendModel.findOneAndDelete({ _id: docB._id })
         await adder.save()
