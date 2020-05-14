@@ -5,7 +5,7 @@ import { jwtConstants } from '../auth/auth.constants';
 import { MessageModule} from '../message/message.module'
 
 @Module({ 
-    providers: [ ChatGateway ],
+    providers: [ChatGateway],
     imports:[
         JwtModule.register({
             secret: jwtConstants.secret,
