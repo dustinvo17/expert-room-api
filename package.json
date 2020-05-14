@@ -12,7 +12,7 @@
   "scripts": {
     "prestart:prod": "rimraf dist && npm run build",
     "postinstall": "npm run prestart:prod",
-    "build": "nest build",
+    "build": "tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "npm run start:prod",
     "start:dev": "nest start --watch",
