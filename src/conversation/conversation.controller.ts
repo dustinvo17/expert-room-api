@@ -14,14 +14,13 @@ export class ConversationController {
     async initConversation(@Request() req) {
         const starterId = req.user.userId
         const parterId = req.body.userID 
-        console.log(starterId)
-        console.log(parterId)
+    
         return await this.conversationService.initConversation(starterId,parterId)
     }
     @UseGuards(AuthGuard('jwt'))
     @Get('/conversation')
     async getConversation(@Request() req) {
-        console.log(req.user)
+
         return await this.conversationService.findConversationsByUser(req.user.userId)
     }
     @UseGuards(AuthGuard('jwt'))
@@ -32,9 +31,8 @@ export class ConversationController {
         const conversationId = req.query.conversationId
         const filePath = await this.uploadFileService.uploadFile(file,userId)
         const newMsg = await this.msgService.create(filePath,userId,conversationId,true)
-        const conversations = await this.conversationService.findConversationsByUser(req.user.userId)
         this.socketService.server.emit('chat',newMsg)
-        this.socketService.server.emit('conversation', conversations)
+
         
         // console.log(file)
         // console.log(await this.uploadFileService.uploadFile(file))
