@@ -14,9 +14,8 @@ export class UserController {
         const {userId} = req.user
         const users =  await this.usersService.findByName(name,userId)
         return users
-        
-
     }
+
     @UseGuards(AuthGuard('jwt'))
     @Put('')
     async updateProfile(@Request() req) {
@@ -30,6 +29,7 @@ export class UserController {
             throw new BadRequestException()
         }
     }
+
     @UseGuards(AuthGuard('jwt'))
     @Post()
     @UseInterceptors(FileInterceptor('file')) 
@@ -75,7 +75,7 @@ export class UserController {
     async denydFriend(@Request() req ){
         const adderId = req.body.userID
         const recieverId = req.user.userId
-        if(req.body.pullBack === true ){
+        if(req.body.pullBack === true ){ // pullback is user sent add friend request but later cancel
             return  await this.usersService.denyFriend(adderId,recieverId,true)
         }
         return await this.usersService.denyFriend(adderId,recieverId)

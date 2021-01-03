@@ -57,12 +57,5 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
             throw err 
            
         }
-     
-        
-     
-     
-        
     }
-   
- 
 }

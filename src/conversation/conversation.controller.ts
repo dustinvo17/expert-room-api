@@ -30,10 +30,8 @@ export class ConversationController {
         const userId = req.user.userId
         const conversationId = req.query.conversationId
         const filePath = await this.uploadFileService.uploadFile(file,userId)
-        const newMsg = await this.msgService.create(filePath,userId,conversationId,true)
-        this.socketService.server.emit('chat',newMsg)
-
-        
+        const newMsg = await this.msgService.create(filePath,userId,conversationId,true) // filePath,userId,conversationId, isImage
+        this.socketService.server.emit('chat',newMsg)   
         // console.log(file)
         // console.log(await this.uploadFileService.uploadFile(file))
         // return await this.uploadFileService.uploadFile(file)

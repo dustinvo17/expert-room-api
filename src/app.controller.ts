@@ -13,15 +13,18 @@ export class AppController {
     return this.authService.login(req.user);
 
   }
+  
   @Post('auth/signup')
   async signup(@Request() req) {
    
     return this.authService.registerUser(req.body.username,req.body.password,req.body.name)
   }
+
   @Get('auth/logout')
   async logout(@Request() req) {
     return req.logout();
   }
+
   @UseGuards(AuthGuard('jwt'))
   @Get('profile')
   async getProfile(@Request() req) {
