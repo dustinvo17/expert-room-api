@@ -37,7 +37,7 @@
     "@nestjs/websockets": "^7.0.8",
     "@types/bcrypt": "^3.0.0",
     "aws-lambda": "^1.0.6",
-    "aws-sdk": "^2.672.0",
+    "aws-sdk": "^2.814.0",
     "aws-serverless-express": "^3.3.8",
     "bcrypt": "^4.0.1",
     "mongoose": "^5.9.10",
