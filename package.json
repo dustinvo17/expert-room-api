@@ -33,7 +33,7 @@
     "@nestjs/mongoose": "^6.4.0",
     "@nestjs/passport": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
-    "@nestjs/platform-socket.io": "^7.0.8",
+    "@nestjs/platform-socket.io": "^9.2.0",
     "@nestjs/websockets": "^7.0.8",
     "@types/bcrypt": "^3.0.0",
     "aws-lambda": "^1.0.6",
